@@ -13,7 +13,7 @@ const TIPOS_SERVICIO = [
 const ESTADOS = [
   "activo",
   "inactivo",
-];
+]; 
 
 
 // =========================================================
