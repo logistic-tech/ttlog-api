@@ -8,7 +8,7 @@ import {
   crearServicio,
   actualizarServicio,
   eliminarServicio,
-} from "../controller/serviciosTTController.js"; 
+} from "../Controllers/serviciosController.js"; 
 
 
 const router =
