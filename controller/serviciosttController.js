@@ -1162,7 +1162,7 @@ export const eliminarServicio =
             "Servicio eliminado correctamente.",
         });
 
-    } catch (error) {
+    } catch (error) { 
       console.error(
         "Error en eliminarServicio:",
         error
