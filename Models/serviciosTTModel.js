@@ -61,59 +61,67 @@ export const ServiciosTTModel = {
   },
 
   // =========================================================
-  // OBTENER UNO POR ID
-  // =========================================================
-  async obtenerServicioPorId(id) {
-    const { data, error } = await supabase
-      .from(TABLA)
-      .select("*")
-      .eq("id", id)
-      .maybeSingle();
+// OBTENER UNO POR ID
+// =========================================================
+async obtenerServicioPorId(id) {
+  const idNumerico = Number(id);
 
-    return { data, error };
-  },
+if (!Number.isInteger(idNumerico) || idNumerico <= 0) {
+  return res.status(400).json({
+    ok: false,
+    message: "El ID del servicio no es válido.",
+  });
+}
+  const { data, error } = await supabase
+    .from(TABLA)
+    .select("*")
+    .eq("id", idNumerico)
+    .maybeSingle();
 
-  // =========================================================
-  // CREAR SERVICIO
-  // Supabase genera automáticamente el ID
-  // =========================================================
-  async crearServicio(servicioData) {
-    const { data, error } = await supabase
-      .from(TABLA)
-      .insert([servicioData])
-      .select()
-      .single();
+  return { data, error };
+},
 
-    return { data, error };
-  },
+// =========================================================
+// ACTUALIZAR SERVICIO
+// =========================================================
+async actualizarServicio(id, servicioData) {
+  const idNumerico = Number(id);
 
-  // =========================================================
-  // ACTUALIZAR SERVICIO
-  // =========================================================
-  async actualizarServicio(id, servicioData) {
-    const { data, error } = await supabase
-      .from(TABLA)
-      .update(servicioData)
-      .eq("id", id)
-      .select()
-      .single();
+  const { data, error } = await supabase
+    .from(TABLA)
+    .update(servicioData)
+    .eq("id", idNumerico)
+    .select()
+    .single();
 
-    return { data, error };
-  },
+  return { data, error };
+},
 
-  // =========================================================
-  // ELIMINAR SERVICIO
-  // =========================================================
-  async eliminarServicio(id) {
-    const { data, error } = await supabase
-      .from(TABLA)
-      .delete()
-      .eq("id", id)
-      .select()
-      .maybeSingle();
+async crearServicio(servicioData) {
+  const { data, error } = await supabase
+    .from(TABLA)
+    .insert([servicioData])
+    .select()
+    .single();
 
-    return { data, error };
-  },
+  return { data, error };
+},
+
+// =========================================================
+// ELIMINAR SERVICIO
+// =========================================================
+async eliminarServicio(id) {
+  const idNumerico = Number(id);
+
+  const { data, error } = await supabase
+    .from(TABLA)
+    .delete()
+    .eq("id", idNumerico)
+    .select()
+    .maybeSingle();
+
+  return { data, error };
+},
 
   // =========================================================
   // SUBIR UNA IMAGEN
