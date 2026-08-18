@@ -34,13 +34,15 @@ export const SolicitudesTTModel = {
 
 
   // =========================================================
-  // OBTENER UNA POR ID
+  // OBTENER POR ID
   // =========================================================
   async obtenerSolicitudPorId(id) {
+    const idNumerico = Number(id);
+
     const { data, error } = await supabase
       .from(TABLA)
       .select("*")
-      .eq("id", id)
+      .eq("id", idNumerico)
       .maybeSingle();
 
     return { data, error };
@@ -48,16 +50,18 @@ export const SolicitudesTTModel = {
 
 
   // =========================================================
-  // ACTUALIZAR SOLICITUD
+  // ACTUALIZAR
   // =========================================================
   async actualizarSolicitud(
     id,
     solicitudData
   ) {
+    const idNumerico = Number(id);
+
     const { data, error } = await supabase
       .from(TABLA)
       .update(solicitudData)
-      .eq("id", id)
+      .eq("id", idNumerico)
       .select()
       .single();
 
@@ -66,13 +70,15 @@ export const SolicitudesTTModel = {
 
 
   // =========================================================
-  // ELIMINAR SOLICITUD
+  // ELIMINAR
   // =========================================================
   async eliminarSolicitud(id) {
+    const idNumerico = Number(id);
+
     const { data, error } = await supabase
       .from(TABLA)
       .delete()
-      .eq("id", id)
+      .eq("id", idNumerico)
       .select()
       .maybeSingle();
 
