@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 
 import serviciosTTRoutes from "./routes/serviciosTTRoutes.js";
-
+import solicitudesTTRoutes from "./routes/solicitudesTTRoutes.js";
 const app = express();
 
 const port =
@@ -65,6 +65,25 @@ app.get(
   }
 );
 
+
+// =========================================================
+// SERVICIOS TT
+// =========================================================
+
+app.use(
+  "/api/serviciostt",
+  serviciosTTRoutes
+);
+
+
+// =========================================================
+// SOLICITUDES TT
+// =========================================================
+
+app.use(
+  "/api/solicitudestt",
+  solicitudesTTRoutes
+);
 
 // =========================================================
 // SERVIDOR
